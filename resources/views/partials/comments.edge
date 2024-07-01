@@ -1,0 +1,28 @@
+<div id="comments">
+    @each(comment in comments)
+    <div class="flex p-4 space-x-4 bg-white border rounded">
+        <div>
+            <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
+                class="w-8 h-8 mx-auto rounded-full" alt="{{ comment.user.name }}">
+        </div>
+        <div>
+            <p class="text-sm">{{ comment.user.name }} • {{ relativeTime(comment.createdAt) }}</p>
+            <p class="mt-4">{{ comment.content }}</p>
+        </div>
+    </div>
+    @end
+
+
+    @if(auth.user && pagination.last === pagination.current)
+    <div class="comment-form">
+        <form action="/topics/{{ topic.slug }}-{{ topic.sid }}/comments" method="post" class="mt-8" up-submit
+            up-target="#comments">
+
+            {{ csrfField() }}
+
+            <textarea name="content" class="w-full p-2 border rounded" placeholder="Comment"></textarea>
+            <button type="submit" class="p-2 mt-2 text-white bg-blue-500 rounded">Submit</button>
+        </form>
+    </div>
+    @end
+</div>

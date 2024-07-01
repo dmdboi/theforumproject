@@ -48,7 +48,7 @@ export default class Comment extends BaseModel {
   @manyToMany(() => Comment, {
     pivotTable: "comments_comments",
     localKey: "id",
-    pivotForeignKey: "comment_id",
+    pivotForeignKey: "parent_id",
     relatedKey: "id",
     pivotRelatedForeignKey: "child_id",
   })

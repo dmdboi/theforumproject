@@ -19,11 +19,10 @@ Route.group(() => {
 
   /** Verify Email Route */
   Route.get('/verify-email', 'PortalController.verifyEmail')
-}).prefix('/portal')
+}).prefix('/auth')
 
 Route.group(() => {
   Route.get('/account', 'PortalController.getAccountView')
   Route.get('/logout', 'PortalController.logout')
 })
-  .prefix('/portal')
   .middleware('auth')

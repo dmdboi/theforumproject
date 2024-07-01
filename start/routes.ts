@@ -22,11 +22,11 @@ import Route from "@ioc:Adonis/Core/Route";
 
 import "./portal";
 
-Route.get("/", async ({ view }) => {
-  return view.render("welcome");
-});
-
 Route.group(() => {
+  Route.get("/", async ({ view }) => {
+    return view.render("welcome");
+  });
+
   Route.get("topics", "TopicsController.list").as("topics.list");
   Route.get("topics/create", "TopicsController.create").as("topics.create");
   Route.post("topics", "TopicsController.store").as("topics.store");
@@ -34,6 +34,7 @@ Route.group(() => {
   Route.get("topics/:sid/edit", "TopicsController.edit").as("topics.edit");
   Route.post("topics/:sid", "TopicsController.update").as("topics.update");
 
+  Route.get("topics/:slugsid/comments", "CommentsController.listByTopic");
   Route.post("topics/:slugsid/comments", "CommentsController.create");
 
   Route.get("categories", "CategoriesController.list").as("categories.list");

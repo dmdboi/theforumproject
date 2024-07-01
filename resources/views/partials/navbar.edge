@@ -15,12 +15,12 @@
 
                     <div class="flex items-center justify-center space-x-4">
                         @if(!auth.user)
-                        <a href="/login" class="px-3 py-2 text-sm font-medium rounded-md hover:text-green-500">Login</a>
+                        <a href="/auth/login" class="px-3 py-2 text-sm font-medium rounded-md hover:text-green-500">Login</a>
 
-                        <a href="/register"
+                        <a href="/auth/register"
                             class="px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600">Register</a>
                         @else
-                        <a href="/logout"
+                        <a href="/auth/logout"
                             class="px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600">Logout</a>
                         @endif
                     </div>

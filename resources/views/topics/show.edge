@@ -1,7 +1,7 @@
 @layout('layouts/main')
 
 @section('body')
-<a href="/topics">Back</a>
+<a href="/topics" class="text-blue-500 hover:underline">Back</a>
 
 <div class="mt-4">
   <h1 class="text-xl font-bold">{{ topic.name }}</h1>
@@ -9,28 +9,32 @@
 
   <div class="my-8">
 
-    @each(comment in topic.comments)
-    <div class="p-4 bg-white border rounded">
-      <p>{{ comment.content }}</p>
+    @include('partials/comments')
 
-      <div class="mt-4">
-        <small>By {{ comment.user.name }}</small>
-      </div>
-    </div>
-    @end
 
-    <div class="comment-form">
-      <form action="/topics/{{ topic.slug }}-{{ topic.sid }}/comments" method="post" class="mt-8" up-submit
-        up-target=".comment-form">
+    <nav class="mt-4">
 
-        {{ csrfField() }}
+      @if (pagination.current > 1)
+      <a href="?page={{ pagination.previous }}"
+        class="px-2 py-1 mx-1 text-white bg-blue-500 rounded hover:bg-blue-600">Prev</a>
+      @endif
 
-        <textarea name="content" class="w-full p-2 border rounded" placeholder="Comment"></textarea>
-        <button type="submit" class="p-2 mt-2 text-white bg-blue-500 rounded">Submit</button>
-      </form>
-    </div>
+      @each(page in pagination.pages)
+
+      @if (pagination.current === page.page)
+      <span class="px-2 py-1 mx-1 text-black rounded">{{ page.page }}</span>
+      @else
+      <a href="{{ page.url }}" class="px-2 py-1 mx-1 text-white bg-blue-500 rounded hover:bg-blue-600">{{ page.page
+        }}</a>
+      @endif
+
+      @end
+
+      @if (pagination.last !== pagination.current)
+      <a href="?page={{ pagination.next }}"
+        class="px-2 py-1 mx-1 text-white bg-blue-500 rounded hover:bg-blue-600">Next</a>
+      @endif
+    </nav>
 
   </div>
-
-</div>
-@end
+  @end

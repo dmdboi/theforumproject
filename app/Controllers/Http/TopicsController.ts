@@ -1,6 +1,10 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Comment from "App/Models/Comment";
 
 import Topic from "App/Models/Topic";
+import { buildPagination } from "App/Utils/pagination";
+import { extractSlugsid } from "App/Utils/slugsid";
+import { getTopicFromSlugsid } from "App/Utils/topics";
 
 export default class TopicsController {
   public async list({ view }: HttpContextContract) {
@@ -11,21 +15,34 @@ export default class TopicsController {
     });
   }
 
-  public async show({ request, view }: HttpContextContract) {
+  public async show({ request, view, response }: HttpContextContract) {
     const { slugsid } = request.params();
+    const { page } = request.qs();
+    const { slug, sid } = extractSlugsid(slugsid);
 
-    // Get the slug and sid from the URL, split by the last occurrence of a -
-    const slug = slugsid.slice(0, slugsid.lastIndexOf("-"));
-    const sid = slugsid.slice(slugsid.lastIndexOf("-") + 1);
+    const topic = await getTopicFromSlugsid(slug, sid);
 
-    const topic = await Topic.query()
-      .where("slug", slug)
-      .andWhere("sid", sid)
-      .preload("comments", (c) => c.preload("user"))
-      .first();
+    if (!topic) {
+      return response.redirect("/topics");
+    }
+
+    const comments = (
+      await Comment.query()
+        .where("parentId", topic.id)
+        .orderBy("createdAt", "asc")
+        .preload("user")
+        .preload("children")
+        .paginate(page, 15)
+    ).toJSON();
+
+    console.log(comments.meta);
+
+    const pagination = await buildPagination(comments.meta);
 
     return view.render("topics/show", {
       topic,
+      comments: comments.data,
+      pagination,
     });
   }
 
