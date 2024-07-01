@@ -1,0 +1,15 @@
+<a href="/categories">Back</a>
+
+<div>
+  <h1 class="text-xl font-bold">{{ category.id }}</h1>
+
+  <ul>
+
+    <li><strong>name</strong>: {{ category.name }}</li>
+
+    <li><strong>category</strong>: {{ category.category }}</li>
+
+  </ul>
+
+  <a href="/categories/{{ category.id }}/edit">Edit</a>
+</div>

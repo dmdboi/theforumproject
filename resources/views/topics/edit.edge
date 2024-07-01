@@ -1,0 +1,75 @@
+
+<a href="/topics/{{ topic.id }}">Back</a>
+
+<form action="/topics/{{ topic.id }}" method="post">
+  {{ csrfField() }}
+
+  
+
+  <div class="form-group">
+    <label for="id">id</label>
+    <input
+      type="number"
+      id="id"
+      name="id"
+      value="{{ topic.id }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="slug">slug</label>
+    <input
+      type="string"
+      id="slug"
+      name="slug"
+      value="{{ topic.slug }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="name">name</label>
+    <input
+      type="string"
+      id="name"
+      name="name"
+      value="{{ topic.name }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="description">description</label>
+    <input
+      type="string"
+      id="description"
+      name="description"
+      value="{{ topic.description }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="restricted">restricted</label>
+    <input
+      type="boolean"
+      id="restricted"
+      name="restricted"
+      value="{{ topic.restricted }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <button type="submit">Update</button>
+</form>

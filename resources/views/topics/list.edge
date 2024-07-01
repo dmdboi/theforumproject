@@ -1,0 +1,16 @@
+<div>
+
+  <h1>topics</h1>
+
+  <a href="/topics/create">Create</a>
+
+  <ul>
+    @each(topic in topics)
+    <li>
+      <a href="/topics/{{ topic.id }}">
+        {{ topic.id }}
+      </a>
+    </li>
+    @end
+  </ul>
+</div>

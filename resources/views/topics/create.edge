@@ -1,0 +1,45 @@
+<a href="/topics">Back</a>
+
+<form action="/topics" method="post">
+
+  {{ csrfField() }}
+
+  
+
+  <div class="form-group" style="margin-top: 8px;">
+    <label for="id">id</label>
+    <input type="number" id="id" name="id" placeholder="id" />
+  </div>
+
+  
+
+  <div class="form-group" style="margin-top: 8px;">
+    <label for="slug">slug</label>
+    <input type="string" id="slug" name="slug" placeholder="slug" />
+  </div>
+
+  
+
+  <div class="form-group" style="margin-top: 8px;">
+    <label for="name">name</label>
+    <input type="string" id="name" name="name" placeholder="name" />
+  </div>
+
+  
+
+  <div class="form-group" style="margin-top: 8px;">
+    <label for="description">description</label>
+    <input type="string" id="description" name="description" placeholder="description" />
+  </div>
+
+  
+
+  <div class="form-group" style="margin-top: 8px;">
+    <label for="restricted">restricted</label>
+    <input type="boolean" id="restricted" name="restricted" placeholder="restricted" />
+  </div>
+
+  
+
+  <button type="submit" style="margin-top: 8px;">Create</button>
+</form>

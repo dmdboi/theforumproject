@@ -1,0 +1,36 @@
+
+<a href="/categories/{{ category.id }}">Back</a>
+
+<form action="/categories/{{ category.id }}" method="post">
+  {{ csrfField() }}
+
+  
+
+  <div class="form-group">
+    <label for="name">name</label>
+    <input
+      type="string"
+      id="name"
+      name="name"
+      value="{{ category.name }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="category">category</label>
+    <input
+      type="string"
+      id="category"
+      name="category"
+      value="{{ category.category }}"
+      placeholder=""
+    />
+  </div>
+
+  
+
+  <button type="submit">Update</button>
+</form>

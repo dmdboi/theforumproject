@@ -1,0 +1,28 @@
+@layout('layouts/main')
+
+@section('body')
+
+<div>
+  <h1 class="text-xl font-bold">Categories</h1>
+
+  <ul class="mt-8 space-y-4">
+    @each(category in categories)
+    <div class="p-4 bg-white border rounded">
+      <a href="/categories/{{ category.id }}">
+        <h2 class="pb-2 text-lg font-bold border-b-2 ">{{ category.name }}</h2>
+      </a>
+
+      <ul>
+        @each(topic in category.topics)
+        <li class="border-b last:border-none hover:bg-gray-100">
+          <a href="/topics/{{ topic.slug }}-{{ topic.sid }}" class="block p-2">
+            <span>{{ topic.name }}</span>
+          </a>
+        </li>
+        @end
+      </ul>
+    </div>
+    @end
+  </ul>
+</div>
+@end

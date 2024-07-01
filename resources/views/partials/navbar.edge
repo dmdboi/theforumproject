@@ -1,0 +1,31 @@
+<nav>
+    <div class="w-full py-3 mx-auto bg-white border-b shadow">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-center flex-1 w-full sm:items-stretch sm:justify-start">
+                <div class="flex items-center flex-shrink-0">
+                    Your Logo
+                </div>
+                <div class="hidden w-full md:justify-between md:flex sm:ml-6">
+                    <div class="flex space-x-4">
+                        <a href="/categories" class="px-3 py-2 text-sm font-medium rounded-md hover:text-green-500"
+                            aria-current="page">Categories</a>
+                        <a href="/popular" class="px-3 py-2 text-sm font-medium rounded-md hover:text-green-500"
+                            aria-current="page">Popular</a>
+                    </div>
+
+                    <div class="flex items-center justify-center space-x-4">
+                        @if(!auth.user)
+                        <a href="/login" class="px-3 py-2 text-sm font-medium rounded-md hover:text-green-500">Login</a>
+
+                        <a href="/register"
+                            class="px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600">Register</a>
+                        @else
+                        <a href="/logout"
+                            class="px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600">Logout</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

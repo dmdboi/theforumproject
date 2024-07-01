@@ -1,0 +1,36 @@
+@layout('layouts/main')
+
+@section('body')
+<a href="/topics">Back</a>
+
+<div class="mt-4">
+  <h1 class="text-xl font-bold">{{ topic.name }}</h1>
+  <p>{{ topic.description }}</p>
+
+  <div class="my-8">
+
+    @each(comment in topic.comments)
+    <div class="p-4 bg-white border rounded">
+      <p>{{ comment.content }}</p>
+
+      <div class="mt-4">
+        <small>By {{ comment.user.name }}</small>
+      </div>
+    </div>
+    @end
+
+    <div class="comment-form">
+      <form action="/topics/{{ topic.slug }}-{{ topic.sid }}/comments" method="post" class="mt-8" up-submit
+        up-target=".comment-form">
+
+        {{ csrfField() }}
+
+        <textarea name="content" class="w-full p-2 border rounded" placeholder="Comment"></textarea>
+        <button type="submit" class="p-2 mt-2 text-white bg-blue-500 rounded">Submit</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+@end

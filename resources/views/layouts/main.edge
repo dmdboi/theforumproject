@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title ? title : '' }}</title>
+
+
+    @entryPointScripts('app')
+    @entryPointStyles('app')
+
+    <script src="https://cdn.jsdelivr.net/npm/unpoly@3.8.0/unpoly.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/unpoly@3.8.0/unpoly.min.css">
+</head>
+
+<body class="bg-gray-100">
+
+    @include('partials/navbar')
+
+    <main class="container px-6 py-12 mx-auto md:px-0">
+        @!section('body')
+    </main>
+</body>
+
+</html>
